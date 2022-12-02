@@ -2,7 +2,11 @@
 // import { RouterLink, RouterView } from 'vue-router'
 </script>
 <template>
-  <h1>Hello</h1>
+  <h1 class="h1">Hello</h1>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.h1 {
+  color: $color1;
+}
+</style>
