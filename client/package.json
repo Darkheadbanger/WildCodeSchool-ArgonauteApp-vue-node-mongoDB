@@ -26,7 +26,6 @@
     "eslint-plugin-vue": "^9.3.0",
     "postcss": "^8.4.19",
     "postcss-cli": "^10.0.0",
-    "prettier": "^2.7.1",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
     "style-resources-loader": "^1.5.0",
