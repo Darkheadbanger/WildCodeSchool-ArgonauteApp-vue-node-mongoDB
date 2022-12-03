@@ -13,14 +13,6 @@ export default defineConfig({
     },
   },
   plugins: [vue()],
-  rules: {
-    "vue/multi-word-component-names": [
-      "error",
-      {
-        ignores: ["default"],
-      },
-    ],
-  },
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
