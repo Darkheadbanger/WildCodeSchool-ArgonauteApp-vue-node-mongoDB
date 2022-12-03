@@ -26,10 +26,11 @@ header {
     font-size: 2.5em;
     font-weight: bold;
     text-align: center;
+    vertical-align: middle;
     img {
       width: 17%;
       min-width: 96px;
-      vertical-align: middle;
+      max-width: 96px;
     }
   }
 }

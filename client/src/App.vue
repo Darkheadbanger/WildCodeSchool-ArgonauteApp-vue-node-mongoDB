@@ -1,15 +1,13 @@
 <script setup>
 import Header from "@/components/TheHeader.vue";
-// import Main from "@/components/TheMain.vue";
+import Main from "@/components/TheMain.vue";
 import Footer from "@/components/TheFooter.vue";
 </script>
 
 <template>
   <div class="cnotainer">
     <Header title=" Les Argonautes" />
-    <main>
-      <section></section>
-    </main>
+    <Main />
     <Footer footer="Réalisé par Jason en Anthestérion de l'an 515 avant JC" />
   </div>
 </template>
