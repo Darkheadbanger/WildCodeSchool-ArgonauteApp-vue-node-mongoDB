@@ -1,9 +1,13 @@
 // Background colors
 $header-background: #f4f4f4;
-
+$footer-container-color: #f76c6c;
 // Body mixin
 @mixin fullBody {
   margin: 0 auto;
   padding: 0 auto;
   box-sizing: inherit;
 }
+// header
+// main
+// footer
+$text-color: #ffffff;
