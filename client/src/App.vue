@@ -1,14 +1,16 @@
 <script setup>
 import Header from "@/components/TheHeader.vue";
-// import Main from "@/components/Main.vue";
-// import Footer from "@/components/Footer.vue";
+// import Main from "@/components/TheMain.vue";
+import Footer from "@/components/TheFooter.vue";
 </script>
 
 <template>
   <div class="cnotainer">
-    <header>
-      <Header title=" Les Argonautes" />
-    </header>
+    <Header title=" Les Argonautes" />
+    <main>
+      <section></section>
+    </main>
+    <Footer footer="Réalisé par Jason en Anthestérion de l'an 515 avant JC" />
   </div>
 </template>
 
@@ -19,15 +21,7 @@ import Header from "@/components/TheHeader.vue";
 *,
 *::after,
 *::before {
-  margin: 0 auto;
-  padding: 0 auto;
-  box-sizing: inherit;
-}
-
-header {
-  background: #f4f4f4;
-  text-align: center;
-  padding: 2em;
+  @include fullBody;
 }
 
 .cnotainer {

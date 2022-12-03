@@ -1,1 +1,9 @@
-$color1: red; 
+// Background colors
+$header-background: #f4f4f4;
+
+// Body mixin
+@mixin fullBody {
+  margin: 0 auto;
+  padding: 0 auto;
+  box-sizing: inherit;
+}
