@@ -11,7 +11,7 @@ const props = defineProps({
   <li
     class="container-member container-member__element container-member__element--modifier"
   >
-    <div>Nom: {{props.member}}</div>
+    <div>Nom: {{props.member}} ffrfr</div>
     <div>Sexe: {{props.member}}</div>
     <div>Age: {{props.member}}</div>
   </li>
