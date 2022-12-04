@@ -1,6 +1,19 @@
-<script setup></script>
+<script setup>
+const props = defineProps({
+  member: {
+    type: String,
+    required: true,
+  },
+});
+</script>
 
 <template>
-  <div></div>
+  <li
+    class="container-member container-member__element container-member__element--modifier"
+  >
+    <div>Nom: {{props.member}}</div>
+    <div>Sexe: {{props.member}}</div>
+    <div>Age: {{props.member}}</div>
+  </li>
 </template>
 <style lang="scss" scoped></style>
