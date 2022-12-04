@@ -23,7 +23,7 @@ header {
   text-align: center;
   padding: 2em;
   h1 {
-    font-size: 2.5em;
+    font-size: 2.5rem;
     font-weight: bold;
     text-align: center;
     vertical-align: middle;

@@ -1,0 +1,17 @@
+// Mixin
+// Header
+// Body
+@mixin fullBody {
+  margin: 0 auto;
+  padding: 0 auto;
+  box-sizing: inherit;
+}
+
+@mixin member-container {
+  margin: 2em 1rem 2em 1rem;
+  line-height: 3em;
+  border-radius: 10px;
+  box-shadow: $box-shadow-member;
+  padding: 0em 5em;
+}
+// footer

@@ -28,7 +28,7 @@ import Member from "./TheMember.vue";
 <style lang="scss" scoped>
 main {
   h2 {
-    font-size: 1.5em;
+    font-size: 1.5rem;
   }
   .containerMember {
     background: $member-background;
