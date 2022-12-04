@@ -3,7 +3,7 @@ import Form from "./TheForm.vue";
 import Member from "./TheMember.vue";
 </script>
 
-<template>
+<template> 
   <main>
     <section
       class="containerForm containerForm__element containerForm__element--modifier"
