@@ -2,9 +2,8 @@
 // Header
 // Body
 @mixin fullBody {
-  margin: 0 auto;
-  padding: 0 auto;
-  box-sizing: inherit;
+  margin: $page-margin;
+  padding: $page-padding;
 }
 
 @mixin member-container {

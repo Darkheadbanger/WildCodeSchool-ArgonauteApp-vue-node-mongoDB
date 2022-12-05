@@ -23,8 +23,8 @@ import Footer from "@/components/TheFooter.vue";
 }
 
 .cnotainer {
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  box-sizing: $page-sizing;
+  font-family: $polce-page;
 }
 h1,
 h2,
@@ -32,6 +32,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: $polce-page;
   text-align: center;
 }
 /* Jusqu'ici */
