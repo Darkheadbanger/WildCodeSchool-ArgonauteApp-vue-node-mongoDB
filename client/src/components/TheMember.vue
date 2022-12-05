@@ -11,16 +11,44 @@ const props = defineProps({
   <li
     class="container-member container-member__element container-member__element--modifier"
   >
-    <div class="separator-line">Nom: {{ props.member }}</div>
-    <div class="separator-line">Sexe: {{ props.member }}</div>
-    <div class="separator-line">Age: {{ props.member }}</div>
+    <div class="separator-line">Nom: {{ props.member }} David</div>
+    <div class="separator-line">Sexe: {{ props.member }} Masculin</div>
+    <div class="separator-line">Age: {{ props.member }} 21 ans</div>
   </li>
   <li
     class="container-member container-member__element container-member__element--modifier"
   >
-    <div class="separator-line">Nom: {{ props.member }}</div>
-    <div class="separator-line">Sexe: {{ props.member }}</div>
-    <div class="separator-line">Age: {{ props.member }}</div>
+    <div class="separator-line">Nom: {{ props.member }} Wahyu</div>
+    <div class="separator-line">Sexe: {{ props.member }} Feminin</div>
+    <div class="separator-line">Age: {{ props.member }} 16 ans</div>
+  </li>
+  <li
+    class="container-member container-member__element container-member__element--modifier"
+  >
+    <div class="separator-line">Nom: {{ props.member }} Wahyu</div>
+    <div class="separator-line">Sexe: {{ props.member }} Feminin</div>
+    <div class="separator-line">Age: {{ props.member }} 16 ans</div>
+  </li>
+  <li
+    class="container-member container-member__element container-member__element--modifier"
+  >
+    <div class="separator-line">Nom: {{ props.member }} Wahyu</div>
+    <div class="separator-line">Sexe: {{ props.member }} Feminin</div>
+    <div class="separator-line">Age: {{ props.member }} 16 ans</div>
+  </li>
+  <li
+    class="container-member container-member__element container-member__element--modifier"
+  >
+    <div class="separator-line">Nom: {{ props.member }} Wahyu</div>
+    <div class="separator-line">Sexe: {{ props.member }} Feminin</div>
+    <div class="separator-line">Age: {{ props.member }} 16 ans</div>
+  </li>
+  <li
+    class="container-member container-member__element container-member__element--modifier"
+  >
+    <div class="separator-line">Nom: {{ props.member }} Wahyu</div>
+    <div class="separator-line">Sexe: {{ props.member }} Feminin</div>
+    <div class="separator-line">Age: {{ props.member }} 16 ans</div>
   </li>
 </template>
 <style lang="scss" scoped>
