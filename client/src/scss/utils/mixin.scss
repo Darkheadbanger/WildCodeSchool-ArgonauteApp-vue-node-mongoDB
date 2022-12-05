@@ -14,4 +14,10 @@
   box-shadow: $box-shadow-member;
   padding: 0em 5em;
 }
+
+@mixin separator-line {
+  border-bottom: $separator-line;
+  text-align: center;
+  margin: 0 -5rem 0px -5rem;
+}
 // footer

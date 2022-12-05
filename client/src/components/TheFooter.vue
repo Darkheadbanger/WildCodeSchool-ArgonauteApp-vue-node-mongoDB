@@ -22,7 +22,7 @@ let props = defineProps({
   &__element {
     text-align: center;
     &--modifier {
-      color: $text-color;
+      color: $text-color-on-darkend-color;
     }
   }
 }

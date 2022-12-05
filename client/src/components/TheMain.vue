@@ -3,7 +3,7 @@ import Form from "./TheForm.vue";
 import Member from "./TheMember.vue";
 </script>
 
-<template> 
+<template>
   <main>
     <section
       class="containerForm containerForm__element containerForm__element--modifier"
@@ -16,11 +16,12 @@ import Member from "./TheMember.vue";
     >
       <h3>Membres de l'équipage</h3>
       <ul class="member-list-container member-list-container__element">
-        <Member
+        <Member />
+        <!-- <Member
           v-for="crewMember in crewArray"
           :key="crewMember.id"
           :member="crewMember"
-        />
+        /> -->
       </ul>
     </section>
   </main>
