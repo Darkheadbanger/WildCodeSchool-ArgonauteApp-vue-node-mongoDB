@@ -23,14 +23,9 @@ header {
   text-align: center;
   padding: 2em;
   h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
+    @include header-title;
     img {
-      width: 17%;
-      min-width: 96px;
-      max-width: 96px;
+      @include header-logo;
     }
   }
 }

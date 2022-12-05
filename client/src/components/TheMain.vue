@@ -9,7 +9,7 @@ import Member from "./TheMember.vue";
       <div
         class="containerForm containerForm__element containerForm__element--modifier"
       >
-        <h2>Add an Argonautes</h2>
+        <h2>Ajouter un(e) Argonaute</h2>
         <Form />
       </div>
       <section
@@ -21,11 +21,11 @@ import Member from "./TheMember.vue";
             class="member-list-container member-list-container__element member-list-container__element--modifier"
           >
             <Member />
-            <!-- <Member
-          v-for="crewMember in crewArray"
-          :key="crewMember.id"
-          :member="crewMember"
-        /> -->
+            <Member
+              v-for="crewMember in crewArray"
+              :key="crewMember.id"
+              :member="crewMember"
+            />
           </ul>
         </div>
       </section>
@@ -34,13 +34,18 @@ import Member from "./TheMember.vue";
 </template>
 <style lang="scss" scoped>
 main {
-  h2 {
-    font-size: 1.5rem;
+  .containerForm {
+    &__element {
+      text-align: center;
+      margin: 1rem 0 0rem 0;
+      &--modifier {
+        font-size: 1.3rem;
+      }
+    }
   }
+
   .containerMember {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    @include flex-column;
     &__element {
       padding: 2rem 0 2rem 0;
       background: $member-background;
@@ -55,10 +60,10 @@ main {
     // min-width: 55rem;
   }
   .member-list-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    @include flex-row {
+      justify-content: space-evenly;
+      margin: 0 2rem 0 0;
+    }
     &__element {
       list-style-type: none;
       text-align: center;
