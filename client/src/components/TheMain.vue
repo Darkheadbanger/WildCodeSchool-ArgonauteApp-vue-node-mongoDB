@@ -1,6 +1,55 @@
 <script setup>
 import Form from "./TheForm.vue";
 import Member from "./TheMember.vue";
+import { ref, watch } from "vue";
+import { stringifyExpression } from "@vue/compiler-core";
+
+// Creation de ID unique
+function uniqueId() {
+  const firstItem = {
+    value: "0",
+  };
+  /*la longuer peut être ajouter ou diminuer pour ajouter dans la liste.*/
+  let counter = "123456789ABCDEF".split("").reduce((acc, curValue) => {
+    const curObj = {};
+    curObj.value = curValue;
+    curObj.prev = acc;
+
+    return curObj;
+  }, firstItem);
+  firstItem.prev = counter;
+
+  return function () {
+    let now = Date.now();
+    if (
+      typeof performance === "object" &&
+      typeof performance.now === "function"
+    ) {
+      now = performance.now().toString().replace(".", "");
+    }
+    counter = counter.prev;
+    return `${now}${Math.random().toString(16).substr(2)}${counter.value}`;
+  };
+}
+const randomIdGenerator = uniqueId();
+
+const day = new Date().getDay();
+const month = new Date().getMonth();
+const year = new Date().getFullYear();
+const hours = new Date().getHours();
+const minutes = new Date().getMinutes();
+const seconds = new Date().getSeconds();
+const createdDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+
+let crewArray = ref([
+  { id: randomIdGenerator, name: "", createdAt: createdDate },
+]);
+
+crewArray.value = JSON.parse(localStorage.getItem("crewArray")) || [];
+
+watch(crewArray, (watchedValue) => {
+  localStorage.setItem("crewArray", JSON.stringify(watchedValue));
+});
 </script>
 
 <template>
