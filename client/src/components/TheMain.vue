@@ -47,9 +47,15 @@ let crewArray = ref([
 
 crewArray.value = JSON.parse(localStorage.getItem("crewArray")) || [];
 
-watch(crewArray, (watchedValue) => {
-  localStorage.setItem("crewArray", JSON.stringify(watchedValue));
-});
+watch(
+  crewArray,
+  (watchedValue) => {
+    localStorage.setItem("crewArray", JSON.stringify(watchedValue));
+  },
+  {
+    deep: true,
+  }
+);
 </script>
 
 <template>
