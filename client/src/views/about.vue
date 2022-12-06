@@ -1,3 +1,3 @@
 <template>
-  <h1>Hello</h1>
+  <h1>Ce projet a été fait par David Bouhaben</h1>
 </template>

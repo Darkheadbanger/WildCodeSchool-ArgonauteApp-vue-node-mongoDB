@@ -1,4 +1,10 @@
-<script setup></script>
+<script setup>
+import { ref, watch, onMounted } from "vue";
+
+// watch(something, (something) => {});
+
+// onMounted((something) => {});
+</script>
 <template>
   <form class="member-form-container member-form-container__element">
     <fieldset>
