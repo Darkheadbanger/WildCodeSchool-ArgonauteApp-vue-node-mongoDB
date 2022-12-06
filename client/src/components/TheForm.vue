@@ -1,12 +1,32 @@
 <script setup>
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted, defineEmits } from "vue";
 
-// watch(something, (something) => {});
+let memberName = ref("");
 
-// onMounted((something) => {});
+const emits = defineEmits(["addMember"]);
+
+watch(memberName, (watchedValue) => {
+  localStorage.setItem("memberName", watchedValue);
+});
+const emptyingStringOnRefresh = (window.onload = () => {
+  memberName.value = "";
+});
+onMounted(() => {
+  memberName.value = localStorage.getItem("memberName" || null);
+  emptyingStringOnRefresh;
+});
+
+const addMember = () => {
+  console.log(memberName.value);
+  emits("addMember", memberName.value);
+  memberName.value = "";
+};
 </script>
 <template>
-  <form class="member-form-container member-form-container__element">
+  <form
+    class="member-form-container member-form-container__element"
+    @submit.prevent="addMember"
+  >
     <fieldset>
       <div class="add-name">
         <label for="addName" class="label-name">Nom de l'Argonaute</label>
@@ -22,8 +42,8 @@ import { ref, watch, onMounted } from "vue";
         type="submit"
         value="submit"
         class="button-add button-add__element button-add__element--modifier"
-        @click.prevent="addMember"
       >
+        <!-- @click.prevent="addMember" -->
         Ajouter un membre
       </button>
     </fieldset>
