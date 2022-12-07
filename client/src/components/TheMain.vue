@@ -41,6 +41,7 @@ const seconds = new Date().getSeconds();
 const createdDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 
 let crewArray = ref([
+  // { id: randomIdGenerator, name: "", age: 0, sexe: "", createdAt: createdDate },
   { id: randomIdGenerator, name: "", createdAt: createdDate },
 ]);
 
@@ -63,7 +64,12 @@ watch(
 const addMember = (memberNameValues) => {
   console.log("hello", memberNameValues);
 
-  crewArray.value.push({ name: memberNameValues });
+  crewArray.value.push({
+    name: memberNameValues,
+    // age: memberValues.memberAgeValues,
+    // sexe: memberValues.memberSexeValues,
+  });
+  crewArray.value.reverse();
 };
 </script>
 
@@ -114,13 +120,9 @@ const addMember = (memberNameValues) => {
     max-width: 60rem;
   }
   .member-list-container {
-    @include flex-row {
-      justify-content: space-evenly;
-    }
-    @include member-container;
+    @include flex-row;
     &__element {
       list-style-type: none;
-      background-color: $member-background-color;
     }
   }
 }

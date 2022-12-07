@@ -2,6 +2,8 @@
 import { ref, watch, onMounted, defineEmits } from "vue";
 
 let memberName = ref("");
+// let memberSexe = ref("homme");
+// let memberAge = ref("");
 
 const emits = defineEmits(["addMember"]);
 
@@ -17,9 +19,14 @@ onMounted(() => {
 });
 
 const addMember = () => {
-  console.log(memberName.value);
+  // const memberName = {
+  //   memberName: memberName.value,
+  //   memberAge: memberAge.value,
+  //   memberSexe: memberSexe.value,
+  // };
   emits("addMember", memberName.value);
   memberName.value = "";
+  // memberAge.value = "";
 };
 </script>
 <template>

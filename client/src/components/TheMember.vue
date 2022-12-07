@@ -6,19 +6,24 @@ const props = defineProps({
 
 <template>
   <li class="li-member li-member__element li-member__element--modifier">
-    <div class="separator-line">Nom :{{ props.member.name }}</div>
-    <!-- <div class="separator-line">Nom d'Argonaute: David</div> -->
+    <div class="separator-line">Nom : {{ props.member.name }}</div>
     <!-- <div class="separator-line">Sexe: {{ props.member }}</div>
     <div class="separator-line">Age: {{ props.member }} ans</div> -->
   </li>
 </template>
 <style lang="scss" scoped>
 .li-member {
+  @include flex-row {
+    justify-content: space-evenly;
+  }
+  @include member-container;
+
   &__element {
     text-align: center;
     list-style-type: none;
     &--modifier {
       color: $text-color-on-darkend-color;
+      background-color: $member-background-color;
     }
   }
   // .separator-line {
