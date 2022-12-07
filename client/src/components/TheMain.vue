@@ -1,11 +1,10 @@
 <script setup>
 import Form from "./TheForm.vue";
 import Member from "./TheMember.vue";
-import { ref, watch } from "vue";
-import { stringifyExpression } from "@vue/compiler-core";
+import { ref, watch, onMounted } from "vue";
 
 // Creation de ID unique
-function uniqueId() {
+const uniqueId = () => {
   const firstItem = {
     value: "0",
   };
@@ -28,9 +27,9 @@ function uniqueId() {
       now = performance.now().toString().replace(".", "");
     }
     counter = counter.prev;
-    return `${now}${Math.random().toString(16).substr(2)}${counter.value}`;
+    return `${now}${Math.random().toString(16).substring(2)}${counter.value}`;
   };
-}
+};
 const randomIdGenerator = uniqueId();
 
 const day = new Date().getDay();
@@ -45,7 +44,9 @@ let crewArray = ref([
   { id: randomIdGenerator, name: "", createdAt: createdDate },
 ]);
 
-crewArray.value = JSON.parse(localStorage.getItem("crewArray")) || [];
+onMounted(() => {
+  crewArray.value = JSON.parse(localStorage.getItem("crewArray")) || [];
+});
 
 watch(
   crewArray,
@@ -53,9 +54,17 @@ watch(
     localStorage.setItem("crewArray", JSON.stringify(watchedValue));
   },
   {
+    // Deep: true est un observateur profond qui permet d'activer toutes les fonctions imbirquées
+    // Donc de tout voir y compris le crew.value
     deep: true,
   }
 );
+
+const addMember = (memberNameValues) => {
+  console.log("hello", memberNameValues);
+
+  crewArray.value.push({ name: memberNameValues });
+};
 </script>
 
 <template>
@@ -65,15 +74,14 @@ watch(
         class="containerForm containerForm__element containerForm__element--modifier"
       >
         <h2>Ajouter un(e) Argonaute</h2>
-        <Form />
+        <Form @add-member="addMember" />
       </div>
 
-      <section
-        class="container-member container-member__element container-member__element--modifier"
-      >
+      <section class="container-member container-member__element">
         <h2>Membres de l'équipage</h2>
         <div class="ul-wrapper">
           <ul class="member-list-container member-list-container__element">
+            <!-- <Member /> -->
             <Member
               v-for="crewMember in crewArray"
               :key="crewMember.id"
@@ -96,25 +104,23 @@ watch(
   }
 }
 .container-member {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   &__element {
     padding: 2rem 0 2rem 0;
     align-items: center;
-    &--modifier {
-      background-color: $member-background;
-    }
+    background-color: $member-container-background-color;
   }
   .ul-wrapper {
     max-width: 60rem;
   }
   .member-list-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    &__element {
+    @include flex-row {
       justify-content: space-evenly;
+    }
+    @include member-container;
+    &__element {
       list-style-type: none;
+      background-color: $member-background-color;
     }
   }
 }
