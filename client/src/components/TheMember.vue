@@ -16,9 +16,8 @@ const props = defineProps({
   @include flex-row {
     justify-content: space-evenly;
   }
-  @include member-container;
-
   &__element {
+    @include member-container;
     text-align: center;
     list-style-type: none;
     &--modifier {
