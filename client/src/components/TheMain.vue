@@ -63,14 +63,25 @@ watch(
 
 const addMember = (memberNameValues) => {
   console.log("hello", memberNameValues);
-
-  console.log("crew", crewArray);
-  console.log("crew", crewArray.value);
-  crewArray.value.push({
-    id: randomIdGenerator(),
-    name: memberNameValues.trim(),
-    createdAt: createdDate,
-  });
+  // const notIdentical = crewArray.value.map(
+  //   (x) => x.name.indexOf(memberNameValues) === -1
+  // );
+  const notIdentical = crewArray.value.indexOf(memberNameValues) === -1;
+  console.log(notIdentical);
+  if (memberNameValues === "") {
+    alert("Désolé, vous devez remplir le formulaire nom!");
+  } else {
+    if (!notIdentical) {
+      // Ne fonctionne pas, je veux
+      alert("Hello alert");
+    } else {
+      crewArray.value.push({
+        id: randomIdGenerator(),
+        name: memberNameValues.trim(),
+        createdAt: createdDate,
+      });
+    }
+  }
 
   crewArray.value.reverse();
 };
