@@ -42,7 +42,7 @@ const createdDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 
 let crewArray = ref([
   // { id: randomIdGenerator, name: "", age: 0, sexe: "", createdAt: createdDate },
-  { id: randomIdGenerator, name: "", createdAt: createdDate },
+  {},
 ]);
 
 onMounted(() => {
@@ -64,11 +64,14 @@ watch(
 const addMember = (memberNameValues) => {
   console.log("hello", memberNameValues);
 
+  console.log("crew", crewArray);
+  console.log("crew", crewArray.value);
   crewArray.value.push({
-    name: memberNameValues,
-    // age: memberValues.memberAgeValues,
-    // sexe: memberValues.memberSexeValues,
+    id: randomIdGenerator(),
+    name: memberNameValues.trim(),
+    createdAt: createdDate,
   });
+
   crewArray.value.reverse();
 };
 </script>
