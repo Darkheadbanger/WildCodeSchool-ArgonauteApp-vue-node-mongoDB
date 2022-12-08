@@ -120,7 +120,9 @@ const addMember = (memberNameValues) => {
     max-width: 60rem;
   }
   .member-list-container {
-    @include flex-row;
+    @include flex-row {
+      justify-content: center;
+    }
     &__element {
       list-style-type: none;
     }
