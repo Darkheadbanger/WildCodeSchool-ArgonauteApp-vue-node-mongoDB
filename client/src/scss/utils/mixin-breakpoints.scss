@@ -1,0 +1,25 @@
+@mixin very-small-mobile-only {
+  @media screen and (min-width: map-get($breakpoints, very-small-mobile)) {
+    @content;
+  }
+}
+@mixin small-mobile-only {
+  @media screen and (min-width: map-get($breakpoints, small-mobile)) {
+    @content;
+  }
+}
+@mixin portrait-mobile-only {
+  @media screen and (min-width: map-get($breakpoints, portrait-mobile)) {
+    @content;
+  }
+}
+@mixin laptop-only {
+  @media screen and (min-width: map-get($breakpoints, laptop)) {
+    @content;
+  }
+}
+@mixin large-devices-only {
+  @media screen and (min-width: map-get($breakpoints, large-devices)) {
+    @content;
+  }
+}
