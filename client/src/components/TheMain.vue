@@ -63,9 +63,7 @@ watch(
 
 const addMember = (memberNameValues) => {
   console.log("hello", memberNameValues);
-  // const notIdentical = crewArray.value.map(
-  //   (x) => x.name.indexOf(memberNameValues) === -1
-  // );
+
   const notIdentical = crewArray.value.indexOf(memberNameValues) === -1;
   console.log(notIdentical);
   if (memberNameValues === "") {

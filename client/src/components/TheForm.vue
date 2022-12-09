@@ -1,10 +1,9 @@
 <script setup>
-import { ref, watch, onMounted, defineEmits } from "vue";
+import { ref, watch, onMounted, defineEmits, computed } from "vue";
 
 let memberName = ref("");
 // let memberSexe = ref("homme");
 // let memberAge = ref("");
-let clicked = ref(false);
 
 const emits = defineEmits(["addMember"]);
 
@@ -19,14 +18,20 @@ onMounted(() => {
   emptyingStringOnRefresh;
 });
 
-const addMember = () => {
+const isDisabled = computed(() => memberName.value);
+
+const addMember = (clicked) => {
   // const memberName = {
   //   memberName: memberName.value,
   //   memberAge: memberAge.value,
   //   memberSexe: memberSexe.value,
   // };
-  emits("addMember", memberName.value);
-  memberName.value = "";
+  if (!clicked) {
+    return false;
+  } else {
+    emits("addMember", memberName.value);
+    memberName.value = "";
+  }
   // memberAge.value = "";
 };
 </script>
@@ -44,32 +49,20 @@ const addMember = () => {
             type="text"
             class="inputName"
             placeholder="Charlampos"
+            required
             v-model="memberName"
           />
         </div>
-        <!-- showMore : pas de texte -->
-        <!-- !showMore : texte -->
-        <div
-          v-if="memberName === '' && clicked ? !showMore : showMore"
-          :style="showMore ? 'visible' : 'hidden'"
-        >
-          <p class="error error__element error__element--modifier">
-            Désolé, vous devez remplir le formulaire du nom!
-          </p>
-        </div>
-        <!-- <div v-if="memberName === '' ? 'hidden' : showMe">
-          <p class="error error__element error__element--modifier">
-            Désolé, vous devez remplir le formulaire du nom!
-          </p>
-        </div> -->
       </div>
-      <!-- showMe true rendered -->
-      <!-- !showMe false not rendered -->
       <button
-        @click="clicked"
+        :disabled="isDisabled"
+        :class="
+          isDisabled
+            ? 'button-add button-add__element button-add__element--modifier'
+            : 'button-add-disabled button-add-disabled__element button-add-disabled__element--modifier'
+        "
         type="submit"
         value="submit"
-        class="button-add button-add__element button-add__element--modifier"
       >
         <!-- @click.prevent="addMember" -->
         Ajouter un membre
@@ -104,19 +97,12 @@ fieldset {
   .label-name {
     padding: 0 0 0 0;
   }
-  .error {
-    &__element {
-      font-size: small;
-      &--modifier {
-        color: red;
-      }
+
+  input[type="text"]:required {
+    border: 2px solid $input-color-required;
+    &:focus {
+      outline: 2px solid $input-color-required;
     }
-  }
-  .hidden {
-    visibility: hidden;
-  }
-  .show {
-    visibility: visible;
   }
 }
 
@@ -127,15 +113,30 @@ fieldset {
     touch-action: manipulation;
     margin: 1.5rem 0rem 1rem 1rem;
     cursor: pointer;
+    background-color: $button-background-color;
     &--modifier {
       color: $text-color-button;
-      background-color: $button-background-color;
     }
     &:hover {
       opacity: 0.8;
     }
     &:active {
       @include button-active;
+    }
+  }
+}
+
+.button-add-disabled {
+  @include button-form;
+  &__element {
+    box-shadow: $box-shadow;
+    touch-action: manipulation;
+    margin: 1.5rem 0rem 1rem 1rem;
+    background-color: $button-background-color-disabled;
+    border-color: white;
+    cursor: pointer;
+    &--modifier {
+      color: $text-color-button;
     }
   }
 }

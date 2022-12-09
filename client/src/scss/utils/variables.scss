@@ -6,16 +6,18 @@ $separator-line-color: #808080;
 $separator-line: 0.1px solid $separator-line-color;
 // footer
 $text-color-on-darkend-color: #ffffff;
-$footer-container-color: #f76c6c;
+$footer-container-color: $member-background-color;
 
 // background color
 $background-color-primary: #f4f4f4;
-$background-color-secondary: #f76c6c;
+$background-color-secondary: $member-background-color;
 
 /* button */
-$button-background-color-primary: #f76c6c;
+$button-background-color-primary: $member-background-color;
+$button-background-color-secondary: #87898c;
 $button-shadow-color-primary: #585555;
 $button-active-shadow-color-primary: #000000;
 // text
 $text-color-primary: white;
-// shadow color
+// input color
+$input-color-primary: $member-background-color;
