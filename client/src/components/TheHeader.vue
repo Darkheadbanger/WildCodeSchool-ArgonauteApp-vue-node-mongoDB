@@ -29,6 +29,9 @@ header {
       display: unset;
       font-size: 1.5rem;
     }
+    @include small-mobile-only {
+      font-size: 2rem;
+    }
     img {
       @include header-logo;
       padding: 0 2rem 0 0;

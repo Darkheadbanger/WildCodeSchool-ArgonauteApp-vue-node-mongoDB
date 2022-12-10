@@ -144,6 +144,9 @@ const addMember = (memberNameValues) => {
     @include flex-row {
       justify-content: center;
     }
+    @include small-mobile-only {
+      @include flex-column;
+    }
     &__element {
       list-style-type: none;
     }

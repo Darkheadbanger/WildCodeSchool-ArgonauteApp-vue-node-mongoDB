@@ -6,7 +6,11 @@ const props = defineProps({
 
 <template>
   <li class="li-member li-member__element li-member__element--modifier">
-    <div class="separator-line">Nom : {{ props.member.name }}</div>
+    <div class="separator-line">
+      <span
+        >Nom : <span>{{ props.member.name }}</span></span
+      >
+    </div>
     <!-- <div class="separator-line">Sexe: {{ props.member }}</div>
     <div class="separator-line">Age: {{ props.member }} ans</div> -->
   </li>

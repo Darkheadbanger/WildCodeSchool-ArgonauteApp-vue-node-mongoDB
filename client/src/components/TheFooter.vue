@@ -29,6 +29,9 @@ let props = defineProps({
     @include very-small-mobile-only {
       font-size: smaller;
     }
+    @include small-mobile-only {
+      font-size: medium;
+    }
   }
 }
 </style>

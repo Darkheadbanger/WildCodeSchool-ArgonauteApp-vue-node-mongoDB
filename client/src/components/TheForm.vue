@@ -20,18 +20,17 @@ onMounted(() => {
 
 const isDisabled = computed(() => memberName.value);
 
-const addMember = (clicked) => {
+const addMember = () => {
   // const memberName = {
   //   memberName: memberName.value,
   //   memberAge: memberAge.value,
   //   memberSexe: memberSexe.value,
   // };
-  if (!clicked) {
-    return false;
-  } else {
-    emits("addMember", memberName.value);
-    memberName.value = "";
-  }
+
+  console.log("Clicked");
+  emits("addMember", memberName.value);
+  memberName.value = "";
+
   // memberAge.value = "";
 };
 </script>
