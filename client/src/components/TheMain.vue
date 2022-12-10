@@ -4,33 +4,6 @@ import Member from "./TheMember.vue";
 import { ref, watch, onMounted } from "vue";
 
 // Creation de ID unique
-const uniqueId = () => {
-  const firstItem = {
-    value: "0",
-  };
-  /*la longuer peut être ajouter ou diminuer pour ajouter dans la liste.*/
-  let counter = "123456789ABCDEF".split("").reduce((acc, curValue) => {
-    const curObj = {};
-    curObj.value = curValue;
-    curObj.prev = acc;
-
-    return curObj;
-  }, firstItem);
-  firstItem.prev = counter;
-
-  return function () {
-    let now = Date.now();
-    if (
-      typeof performance === "object" &&
-      typeof performance.now === "function"
-    ) {
-      now = performance.now().toString().replace(".", "");
-    }
-    counter = counter.prev;
-    return `${now}${Math.random().toString(16).substring(2)}${counter.value}`;
-  };
-};
-const randomIdGenerator = uniqueId();
 
 const day = new Date().getDay();
 const month = new Date().getMonth();
@@ -41,7 +14,7 @@ const seconds = new Date().getSeconds();
 const createdDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 
 let crewArray = ref([
-  // { id: randomIdGenerator, name: "", age: 0, sexe: "", createdAt: createdDate },
+  // { name: "", age: 0, sexe: "", createdAt: createdDate },
   {},
 ]);
 
@@ -74,7 +47,6 @@ const addMember = (memberNameValues) => {
       alert("Hello alert");
     } else {
       crewArray.value.push({
-        id: randomIdGenerator(),
         name: memberNameValues.trim(),
         createdAt: createdDate,
       });
