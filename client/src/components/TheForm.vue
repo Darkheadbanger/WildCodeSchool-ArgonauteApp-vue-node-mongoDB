@@ -18,20 +18,12 @@ onMounted(() => {
   emptyingStringOnRefresh;
 });
 
-const isDisabled = computed(() => memberName.value);
+const isDisabled = computed(() => !memberName.value);
 
 const addMember = () => {
-  // const memberName = {
-  //   memberName: memberName.value,
-  //   memberAge: memberAge.value,
-  //   memberSexe: memberSexe.value,
-  // };
-
   console.log("Clicked");
   emits("addMember", memberName.value);
   memberName.value = "";
-
-  // memberAge.value = "";
 };
 </script>
 <template>
@@ -53,12 +45,13 @@ const addMember = () => {
           />
         </div>
       </div>
-      <!-- :disabled="isDisabled" -->
+      <!--  -->
       <button
+        :disabled="isDisabled"
         :class="
           isDisabled
-            ? 'button-add button-add__element button-add__element--modifier'
-            : 'button-add-disabled button-add-disabled__element button-add-disabled__element--modifier'
+            ? 'button-add-disabled button-add-disabled__element button-add-disabled__element--modifier'
+            : 'button-add button-add__element button-add__element--modifier'
         "
         type="submit"
         value="submit"
