@@ -53,8 +53,8 @@ const addMember = () => {
           />
         </div>
       </div>
+      <!-- :disabled="isDisabled" -->
       <button
-        :disabled="isDisabled"
         :class="
           isDisabled
             ? 'button-add button-add__element button-add__element--modifier'
@@ -80,7 +80,6 @@ const addMember = () => {
 }
 fieldset {
   border: none;
-
   @include flex-row {
     justify-content: center;
     vertical-align: bottom;
@@ -90,6 +89,9 @@ fieldset {
       vertical-align: unset;
       justify-content: unset;
     }
+  }
+  @include laptop-only {
+    @include flex-row;
   }
   .inputName {
     @include input-text;
@@ -117,9 +119,11 @@ fieldset {
   &__element {
     box-shadow: $box-shadow;
     touch-action: manipulation;
-    margin: 1.5rem 0rem 1rem 1rem;
     @include very-small-mobile-only {
       margin: 0.5rem 0rem 1rem 0rem;
+    }
+    @include laptop-only {
+      margin: 1.5rem 0rem 1rem 1rem;
     }
     cursor: pointer;
     background-color: $button-background-color;
@@ -140,11 +144,13 @@ fieldset {
   &__element {
     box-shadow: $box-shadow;
     touch-action: manipulation;
-    margin: 1.5rem 0rem 1rem 1rem;
     background-color: $button-background-color-disabled;
     border-color: white;
     @include very-small-mobile-only {
       margin: 0.5rem 0rem 1rem 0rem;
+    }
+    @include laptop-only {
+      margin: 1.5rem 0rem 1rem 1rem;
     }
     cursor: pointer;
     &--modifier {

@@ -32,6 +32,9 @@ const props = defineProps({
     @include very-small-mobile-only {
       margin: 2em 0rem 0em -2rem;
     }
+    @include laptop-only {
+      margin: 2em 2rem 0em 2rem;
+    }
     &--modifier {
       color: $text-color-on-darkend-color;
       background-color: $member-background-color;

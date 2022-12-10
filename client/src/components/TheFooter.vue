@@ -32,6 +32,9 @@ let props = defineProps({
     @include small-mobile-only {
       font-size: medium;
     }
+    @include portrait-mobile-only {
+      font-size: larger;
+    }
   }
 }
 </style>

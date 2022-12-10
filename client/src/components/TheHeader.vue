@@ -23,7 +23,7 @@ header {
   text-align: center;
   padding: 2em;
   h1 {
-    display: block ruby;
+    @include block-ruby;
     @include header-title;
     @include very-small-mobile-only {
       display: unset;
@@ -32,11 +32,17 @@ header {
     @include small-mobile-only {
       font-size: 2rem;
     }
+    @include portrait-mobile-only {
+      @include block-ruby;
+    }
     img {
       @include header-logo;
       padding: 0 2rem 0 0;
       @include very-small-mobile-only {
         padding: unset;
+      }
+      @include portrait-mobile-only {
+        margin: 0 1rem 0 0;
       }
     }
   }

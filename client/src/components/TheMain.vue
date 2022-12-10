@@ -139,13 +139,18 @@ const addMember = (memberNameValues) => {
     @include very-small-mobile-only {
       max-width: unset;
     }
+    @include laptop-only {
+      max-width: 70rem;
+    }
   }
   .member-list-container {
-    @include flex-row {
-      justify-content: center;
-    }
     @include small-mobile-only {
       @include flex-column;
+    }
+    @include laptop-only {
+      @include flex-row {
+        justify-content: center;
+      }
     }
     &__element {
       list-style-type: none;
