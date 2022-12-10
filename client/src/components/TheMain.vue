@@ -6,8 +6,7 @@ import apiClient from "@/utils/ApiClient";
 
 import { ref, watch, onMounted } from "vue";
 
-// Creation de ID unique
-
+// Creation de date d'ajoute de membre
 const day = new Date().getDay();
 const month = new Date().getMonth();
 const year = new Date().getFullYear();
@@ -16,7 +15,7 @@ const minutes = new Date().getMinutes();
 const seconds = new Date().getSeconds();
 const createdDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 
-let crewArray = ref([{}]);
+let crewArray = ref([]);
 window.crewArray = crewArray.value;
 
 onMounted(() => {
@@ -55,20 +54,37 @@ const addMember = (memberNameValues) => {
   const notIdentical = crewArray.value.indexOf(memberNameValues) === -1;
   console.log(notIdentical);
   if (memberNameValues === "") {
-    alert("Désolé, vous devez remplir le formulaire nom!");
+    return false;
   } else {
     if (!notIdentical) {
       // Ne fonctionne pas, je veux
       alert("Hello alert");
     } else {
-      crewArray.value.push({
-        name: memberNameValues.trim(),
-        createdAt: createdDate,
-      });
+      // Add to backend mongoDB
+      apiClient
+        .post("/api/member/", {
+          membre: memberNameValues.trim(),
+          // sexe: memberSexeValues,
+          // age: memberAgeValues,
+          date: createdDate,
+        })
+        .then((data) => {
+          console.log(data);
+          // let argonaute = new Argonaute(data.data);
+          // crewArray.value.push(argonaute);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      // add to localstorage
+      // crewArray.value.push({
+      //   name: memberNameValues.trim(),
+      //   createdAt: createdDate,
+      // });
     }
   }
 
-  crewArray.value.reverse();
+  // crewArray.value.reverse();
 };
 </script>
 
