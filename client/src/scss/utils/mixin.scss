@@ -6,15 +6,18 @@
   font-weight: $header-tittle-weight;
   text-align: $header-tittle-align;
   vertical-align: $header-tittle-vertical-align;
+  @content;
 }
 @mixin header-logo {
   width: $logo-header-width;
   min-width: $logo-header-min-width;
   max-width: $logo-header-max-width;
+  @content;
 }
 // Body
 @mixin fullBody {
   margin: $page-margin;
+  @content;
 }
 
 @mixin member-container {
@@ -23,12 +26,14 @@
   border-radius: 10px;
   box-shadow: $box-shadow-member;
   padding: 0em 5em;
+  @content;
 }
 
 @mixin separator-line {
   border-bottom: $separator-line;
   text-align: center;
   margin: 0 -5rem 0px -5rem;
+  @content;
 }
 
 @mixin flex-column {
@@ -54,6 +59,7 @@
   padding: 0 1rem;
   margin: 0rem 0rem 1.5rem 1rem;
   border-radius: 10px;
+  @content;
 }
 
 @mixin button-active {

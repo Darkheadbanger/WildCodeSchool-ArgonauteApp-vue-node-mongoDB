@@ -118,11 +118,17 @@ const addMember = (memberNameValues) => {
     margin: 1rem 0 0rem 0;
     &--modifier {
       font-size: 1.3rem;
+      @include very-small-mobile-only {
+        font-size: 1em;
+      }
     }
   }
 }
 .container-member {
   @include flex-column;
+  @include very-small-mobile-only {
+    text-align: center;
+  }
   &__element {
     padding: 2rem 0 2rem 0;
     align-items: center;
@@ -130,6 +136,9 @@ const addMember = (memberNameValues) => {
   }
   .ul-wrapper {
     max-width: 60rem;
+    @include very-small-mobile-only {
+      max-width: unset;
+    }
   }
   .member-list-container {
     @include flex-row {

@@ -25,10 +25,16 @@ header {
   h1 {
     display: block ruby;
     @include header-title;
-    
+    @include very-small-mobile-only {
+      display: unset;
+      font-size: 1.5rem;
+    }
     img {
       @include header-logo;
       padding: 0 2rem 0 0;
+      @include very-small-mobile-only {
+        padding: unset;
+      }
     }
   }
 }

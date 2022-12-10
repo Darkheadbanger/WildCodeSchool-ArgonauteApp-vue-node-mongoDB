@@ -80,11 +80,18 @@ const addMember = (clicked) => {
   }
 }
 fieldset {
+  border: none;
+
   @include flex-row {
     justify-content: center;
     vertical-align: bottom;
   }
-  border: none;
+  @include very-small-mobile-only {
+    @include flex-column {
+      vertical-align: unset;
+      justify-content: unset;
+    }
+  }
   .inputName {
     @include input-text;
   }
@@ -112,6 +119,9 @@ fieldset {
     box-shadow: $box-shadow;
     touch-action: manipulation;
     margin: 1.5rem 0rem 1rem 1rem;
+    @include very-small-mobile-only {
+      margin: 0.5rem 0rem 1rem 0rem;
+    }
     cursor: pointer;
     background-color: $button-background-color;
     &--modifier {
@@ -134,6 +144,9 @@ fieldset {
     margin: 1.5rem 0rem 1rem 1rem;
     background-color: $button-background-color-disabled;
     border-color: white;
+    @include very-small-mobile-only {
+      margin: 0.5rem 0rem 1rem 0rem;
+    }
     cursor: pointer;
     &--modifier {
       color: $text-color-button;

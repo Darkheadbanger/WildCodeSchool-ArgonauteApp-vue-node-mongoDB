@@ -16,10 +16,18 @@ const props = defineProps({
   @include flex-row {
     justify-content: space-evenly;
   }
+  @include very-small-mobile-only {
+    @include flex-column {
+      justify-content: space-evenly;
+    }
+  }
   &__element {
     @include member-container;
     text-align: center;
     list-style-type: none;
+    @include very-small-mobile-only {
+      margin: 2em 0rem 0em -2rem;
+    }
     &--modifier {
       color: $text-color-on-darkend-color;
       background-color: $member-background-color;

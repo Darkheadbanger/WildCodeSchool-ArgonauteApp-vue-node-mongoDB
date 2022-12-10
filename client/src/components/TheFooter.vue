@@ -25,5 +25,10 @@ let props = defineProps({
       color: $text-color-on-darkend-color;
     }
   }
+  p {
+    @include very-small-mobile-only {
+      font-size: smaller;
+    }
+  }
 }
 </style>
