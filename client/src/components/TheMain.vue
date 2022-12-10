@@ -1,6 +1,9 @@
 <script setup>
 import Form from "./TheForm.vue";
 import Member from "./TheMember.vue";
+
+import apiClient from "@/utils/ApiClient";
+
 import { ref, watch, onMounted } from "vue";
 
 // Creation de ID unique
