@@ -13,13 +13,25 @@ const minutes = new Date().getMinutes();
 const seconds = new Date().getSeconds();
 const createdDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 
-let crewArray = ref([
-  // { name: "", age: 0, sexe: "", createdAt: createdDate },
-  {},
-]);
+let crewArray = ref([{}]);
+window.crewArray = crewArray.value;
 
 onMounted(() => {
-  crewArray.value = JSON.parse(localStorage.getItem("crewArray")) || [];
+  // crewArray.value = JSON.parse(localStorage.getItem("crewArray")) || [];
+  apiClient
+    .get("/api/member/")
+    .then((data) => {
+      console.log(data);
+      // data.data.forEach((entity) => {
+      //   console.log("entity", entity);
+      //   let argonaute = new Argonaute();
+      //   console.log(argonaute.loadData(entity));
+      //   crewArray.value.push(argonaute);
+      // });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 watch(
