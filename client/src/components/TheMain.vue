@@ -1,21 +1,15 @@
 <script setup>
 import Form from "./TheForm.vue";
 import Member from "./TheMember.vue";
+// import Argonaute from "../models/Argonaute.js";
 
 import apiClient from "@/utils/ApiClient";
 
 import { ref, watch, onMounted } from "vue";
 
-// Creation de date d'ajoute de membre
-const day = new Date().getDay();
-const month = new Date().getMonth();
-const year = new Date().getFullYear();
-const hours = new Date().getHours();
-const minutes = new Date().getMinutes();
-const seconds = new Date().getSeconds();
-const createdDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+let aujourdhui = new Date().getTime();
 
-let crewArray = ref([]);
+const crewArray = ref([]);
 window.crewArray = crewArray.value;
 
 onMounted(() => {
@@ -24,68 +18,43 @@ onMounted(() => {
     .get("/api/member/")
     .then((data) => {
       console.log(data);
-      // data.data.forEach((entity) => {
-      //   console.log("entity", entity);
-      //   let argonaute = new Argonaute();
-      //   console.log(argonaute.loadData(entity));
-      //   crewArray.value.push(argonaute);
-      // });
+      crewArray.value = data.data;
     })
     .catch((error) => {
       console.log(error);
     });
 });
 
+// Methods creation et get
+const addMember = (memberNameValues) => {
+  if (memberNameValues.trim() === "") return false;
+
+  // Add to backend mongoDB
+  apiClient
+    .post("/api/member/", {
+      membre: memberNameValues.trim(),
+      // sexe: memberSexeValues,
+      // age: memberAgeValues,
+      date: aujourdhui,
+    })
+    .then((data) => {
+      console.log(data);
+      crewArray.value.push(data.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 watch(
   crewArray,
-  (watchedValue) => {
-    localStorage.setItem("crewArray", JSON.stringify(watchedValue));
+  (newVal) => {
+    localStorage.setItem("crewArray", JSON.stringify(newVal));
   },
   {
-    // Deep: true est un observateur profond qui permet d'activer toutes les fonctions imbirquées
-    // Donc de tout voir y compris le crew.value
     deep: true,
   }
 );
-
-const addMember = (memberNameValues) => {
-  console.log("hello", memberNameValues);
-
-  const notIdentical = crewArray.value.indexOf(memberNameValues) === -1;
-  console.log(notIdentical);
-  if (memberNameValues === "") {
-    return false;
-  } else {
-    if (!notIdentical) {
-      // Ne fonctionne pas, je veux
-      alert("Hello alert");
-    } else {
-      // Add to backend mongoDB
-      apiClient
-        .post("/api/member/", {
-          membre: memberNameValues.trim(),
-          // sexe: memberSexeValues,
-          // age: memberAgeValues,
-          date: createdDate,
-        })
-        .then((data) => {
-          console.log(data);
-          // let argonaute = new Argonaute(data.data);
-          // crewArray.value.push(argonaute);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      // add to localstorage
-      // crewArray.value.push({
-      //   name: memberNameValues.trim(),
-      //   createdAt: createdDate,
-      // });
-    }
-  }
-
-  // crewArray.value.reverse();
-};
 </script>
 
 <template>
@@ -102,7 +71,6 @@ const addMember = (memberNameValues) => {
         <h2>Membres de l'équipage</h2>
         <div class="ul-wrapper">
           <ul class="member-list-container member-list-container__element">
-            <!-- <Member /> -->
             <Member
               v-for="crewMember in crewArray"
               :key="crewMember.id"
