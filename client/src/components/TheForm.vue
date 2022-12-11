@@ -2,8 +2,8 @@
 import { ref, watch, onMounted, defineEmits, computed } from "vue";
 
 let memberName = ref("");
-// let memberSexe = ref("homme");
-// let memberAge = ref("");
+let memberSexe = ref("homme");
+let memberAge = ref("");
 
 const emits = defineEmits(["addMember"]);
 
@@ -32,20 +32,47 @@ const addMember = () => {
     @submit.prevent="addMember"
   >
     <fieldset>
-      <div>
-        <div class="add-name">
-          <label for="addName" class="label-name">Nom de l'Argonaute</label>
-          <input
-            id="addName"
-            type="text"
-            class="inputName"
-            placeholder="Charlampos"
+      <!-- div  add-container -->
+      <div class="add-name">
+        <label for="addName" class="label-name">Nom de l'Argonaute</label>
+        <input
+          id="addName"
+          type="text"
+          class="inputName"
+          placeholder="Charlampos"
+          required
+          v-model="memberName"
+        />
+      </div>
+      <div class="sexeEtAge-container">
+        <div class="sexe-container">
+          <label for="sexe">Sexe de l'Argonaute </label>
+          <select
             required
-            v-model="memberName"
+            name="sexe"
+            id="sexe"
+            class="sexe"
+            v-model="memberSexe"
+          >
+            <option value="homme">Un homme</option>
+            <option value="femme">Une femme</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+        <div class="age-container">
+          <label for="age">L'age de l'Argonaute</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            min="18"
+            max="100"
+            required
+            placeholder="minimum 18 ans"
+            v-model="memberAge"
           />
         </div>
       </div>
-      <!--  -->
       <button
         :disabled="isDisabled"
         :class="
@@ -100,9 +127,42 @@ fieldset {
   }
 
   input[type="text"]:required {
-    border: 2px solid $input-color-required;
+    @include input-focus-color {
+      margin: 1rem 0 0 0;
+    }
     &:focus {
-      outline: 2px solid $input-color-required;
+      @include input-focus-color {
+        margin: 1rem 0 0 0;
+      }
+    }
+  }
+  input[type="number"]:required {
+    @include input-focus-color;
+    &:focus {
+      @include input-focus-color;
+    }
+  }
+  .sexe {
+    @include input-focus-color;
+
+    &:focus {
+      @include input-focus-color;
+    }
+  }
+
+  .sexeEtAge-container {
+    @include flex-column;
+    .sexe-container {
+      @include flex-row;
+      label {
+        margin: 0 1rem 0 0;
+      }
+    }
+    .age-container {
+      @include flex-row;
+      label {
+        margin: 0 1rem 0 0;
+      }
     }
   }
 }
