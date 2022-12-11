@@ -136,7 +136,7 @@ fieldset {
       margin: 1rem 0 0 0;
     }
     &:focus {
-      @include input-focus-color {
+      @include outline-focus-color {
         margin: 1rem 0 0 0;
       }
     }
@@ -144,14 +144,14 @@ fieldset {
   input[type="number"]:required {
     @include input-focus-color;
     &:focus {
-      @include input-focus-color;
+      @include outline-focus-color;
     }
   }
   .sexe {
     @include input-focus-color;
 
     &:focus {
-      @include input-focus-color;
+      @include outline-focus-color;
     }
   }
 
