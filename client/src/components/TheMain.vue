@@ -26,15 +26,25 @@ onMounted(() => {
 });
 
 // Methods creation et get
-const addMember = (memberNameValues) => {
-  if (memberNameValues.trim() === "") return false;
+const addMember = (memberValues) => {
+  let memberNameValues = memberValues.memberName;
+  let memberAgeValues = memberValues.memberAge;
+  let memberSexeValues = memberValues.memberAge;
+  if (
+    memberNameValues.trim() === "" ||
+    memberSexeValues === "" ||
+    memberAgeValues === "" ||
+    memberAgeValues < 18 ||
+    memberAgeValues > 100
+  )
+    return false;
 
   // Add to backend mongoDB
   apiClient
     .post("/api/member/", {
       membre: memberNameValues.trim(),
-      // sexe: memberSexeValues,
-      // age: memberAgeValues,
+      sexe: memberSexeValues,
+      age: memberAgeValues,
       date: aujourdhui,
     })
     .then((data) => {
