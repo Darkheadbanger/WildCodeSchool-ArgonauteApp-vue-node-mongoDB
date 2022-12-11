@@ -29,7 +29,7 @@ onMounted(() => {
 const addMember = (memberValues) => {
   let memberNameValues = memberValues.memberName;
   let memberAgeValues = memberValues.memberAge;
-  let memberSexeValues = memberValues.memberAge;
+  let memberSexeValues = memberValues.memberSexe;
   if (
     memberNameValues.trim() === "" ||
     memberSexeValues === "" ||

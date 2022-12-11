@@ -3,7 +3,7 @@ import { ref, watch, onMounted, defineEmits, computed } from "vue";
 
 let memberName = ref("");
 let memberSexe = ref("homme");
-let memberAge = ref("");
+let memberAge = ref("18");
 
 const emits = defineEmits(["addMember"]);
 

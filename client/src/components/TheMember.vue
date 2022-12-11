@@ -2,23 +2,27 @@
 const props = defineProps({
   member: { type: Object, required: true },
 });
+let nom = props.member.membre;
+let age = props.member.age;
+let sexe =
+  props.member.sexe.charAt(0).toUpperCase() + props.member.sexe.slice(1);
 </script>
 
 <template>
   <li class="li-member li-member__element li-member__element--modifier">
     <div class="separator-line">
       <span
-        >Nom : <span>{{ props.member.membre }}</span></span
+        >Nom : <span>{{ nom }}</span></span
       >
     </div>
     <div class="separator-line">
       <span
-        >Age : <span>{{ props.member.age }}</span></span
+        >Age : <span>{{ age }}</span></span
       >
     </div>
     <div class="separator-line">
       <span
-        >Sexe : <span>{{ props.member.sexe }}</span></span
+        >Sexe : <span>{{ sexe }}</span></span
       >
     </div>
   </li>
