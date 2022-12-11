@@ -18,7 +18,7 @@ mongoose
   .catch((error) => console.log(`Connexion à mongoDB échouée ${error}`));
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*"); //process.env.FRONTEND_ORIGIN
+  res.setHeader("Access-Control-Allow-Origin", process.env.FRONTEND_ORIGIN); //process.env.FRONTEND_ORIGIN for security
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
