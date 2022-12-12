@@ -85,3 +85,23 @@
   margin: 0 0 1rem 0;
   @content;
 }
+
+// animation transition
+@mixin before-pressed {
+  transform-origin: center bottom 0px;
+  transform: $notPressed;
+  @content;
+}
+
+@mixin pressed {
+  transform: $pressed;
+  @content;
+}
+
+// animation keyframes
+@mixin shake-animation {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

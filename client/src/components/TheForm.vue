@@ -91,9 +91,9 @@ const addMember = () => {
       <button
         :disabled="isDisabled"
         :class="
-          isDisabled
+          isDisabled && addMember
             ? 'button-add-disabled button-add-disabled__element button-add-disabled__element--modifier'
-            : 'button-add button-add__element button-add__element--modifier'
+            : 'button-add button-add__element pressed button-add__element--modifier'
         "
         type="submit"
         value="submit"
@@ -224,10 +224,28 @@ fieldset {
 }
 
 .button-add {
+  @include very-small-mobile-only {
+    margin: 0.5rem 4rem 1rem 4rem;
+    padding: 0.5rem 0 0.5rem 0;
+  }
+  @include laptop-only {
+    margin: 0.5rem 4rem 1rem 4rem;
+    padding: 0rem 1rem 0 1rem;
+  }
   @include button-form;
+  text-transform: uppercase;
+  perspective: 1000px;
+  @include before-pressed {
+    transition-duration: 0.2s;
+  }
   &__element {
     box-shadow: $box-shadow;
     touch-action: manipulation;
+    .pressed {
+      @include pressed {
+        transition-duration: 0.2s;
+      }
+    }
     @include very-small-mobile-only {
       margin: 0.5rem 0rem 1rem 0rem;
     }
@@ -249,19 +267,32 @@ fieldset {
 }
 
 .button-add-disabled {
+  @include very-small-mobile-only {
+    margin: 0.5rem 4rem 1rem 4rem;
+    padding: 0.5rem 0 0.5rem 0;
+  }
+  @include laptop-only {
+    margin: 0.5rem 4rem 1rem 4rem;
+    padding: 0rem 1rem 0 1rem;
+  }
   @include button-form;
+  text-transform: uppercase;
+  perspective: 1000px;
+  &:hover {
+    @include shake-animation;
+  }
   &__element {
     box-shadow: $box-shadow;
     touch-action: manipulation;
     background-color: $button-background-color-disabled;
     border-color: white;
+    cursor: default;
     @include very-small-mobile-only {
       margin: 0.5rem 0rem 1rem 0rem;
     }
     @include laptop-only {
       margin: 1.5rem 0rem 1rem 1rem;
     }
-    cursor: pointer;
     &--modifier {
       color: $text-color-button;
     }

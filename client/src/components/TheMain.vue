@@ -121,7 +121,7 @@ watch(
       max-width: unset;
     }
     @include laptop-only {
-      max-width: 70rem;
+      max-width: 58rem;
     }
   }
   .member-list-container {
