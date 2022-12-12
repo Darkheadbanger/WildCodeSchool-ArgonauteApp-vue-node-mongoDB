@@ -1,7 +1,7 @@
 <script setup>
 import Form from "./TheForm.vue";
 import Member from "./TheMember.vue";
-// import Argonaute from "../models/Argonaute.js";
+import Argonaute from "../models/Argonaute.js";
 
 import apiClient from "@/utils/ApiClient";
 
@@ -13,12 +13,16 @@ const crewArray = ref([]);
 window.crewArray = crewArray.value;
 
 onMounted(() => {
-  // crewArray.value = JSON.parse(localStorage.getItem("crewArray")) || [];
   apiClient
     .get("/api/member/")
     .then((data) => {
-      console.log(data);
-      crewArray.value = data.data;
+      console.log("data", data);
+      data.data.forEach((entity) => {
+        console.log("entity", entity);
+        let argonaute = new Argonaute();
+        console.log("argonaute entity", argonaute.loadData(entity));
+        crewArray.value.push(argonaute);
+      });
     })
     .catch((error) => {
       console.log(error);
@@ -40,6 +44,7 @@ const addMember = (memberValues) => {
     return false;
 
   // Add to backend mongoDB
+
   apiClient
     .post("/api/member/", {
       membre: memberNameValues.trim(),
@@ -49,7 +54,8 @@ const addMember = (memberValues) => {
     })
     .then((data) => {
       console.log(data);
-      crewArray.value.push(data.data);
+      let argonaute = new Argonaute(data.data);
+      crewArray.value.push(argonaute);
     })
     .catch((error) => {
       console.log(error);
