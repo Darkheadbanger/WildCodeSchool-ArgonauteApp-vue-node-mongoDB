@@ -3,7 +3,7 @@ import { ref, watch, onMounted, defineEmits, computed } from "vue";
 
 let memberName = ref("");
 let memberSexe = ref("homme");
-let memberAge = ref("18");
+let memberAge = ref("");
 
 const emits = defineEmits(["addMember"]);
 
@@ -18,7 +18,7 @@ onMounted(() => {
   emptyingStringOnRefresh;
 });
 
-const isDisabled = computed(() => !memberName.value);
+const isDisabled = computed(() => !memberName.value || memberAge.value < 18 || memberAge.value > 100);
 
 const addMember = () => {
   let memberValues = {
@@ -68,6 +68,7 @@ const addMember = () => {
           <label for="age">L'age de l'Argonaute</label>
           <input
             type="number"
+            class="age"
             id="age"
             name="age"
             min="18"
@@ -133,21 +134,26 @@ fieldset {
 
   input[type="text"]:required {
     @include input-focus-color {
-      margin: 1rem 0 0 0;
+      @include very-small-mobile-only {
+        margin: 0.5rem 0 0 0;
+      }
+      @include laptop-only {
+        margin: 1rem 0 0 0;
+      }
     }
+
     &:focus {
       @include outline-focus-color {
-        margin: 1rem 0 0 0;
+        @include very-small-mobile-only {
+          margin: 0.5rem 0 0 0;
+        }
+        @include laptop-only {
+          margin: 1rem 0 0 0;
+        }
       }
     }
   }
   input[type="number"]:required {
-    @include input-focus-color;
-    &:focus {
-      @include outline-focus-color;
-    }
-  }
-  .sexe {
     @include input-focus-color;
 
     &:focus {
@@ -157,16 +163,52 @@ fieldset {
 
   .sexeEtAge-container {
     @include flex-column;
+    @include very-small-mobile-only {
+      padding: 1rem 0rem 0 1.5rem;
+    }
+    @include small-mobile-only {
+      padding: 1rem 0 0 0;
+    }
+    @include laptop-only {
+      padding: 0 0 0 0;
+    }
     .sexe-container {
       @include flex-row;
+      @include portrait-mobile-only{
+        padding: 0 3.4rem 0 0;
+      }
+      @include laptop-only{
+        padding: 0 3.4rem 0 0;
+      }
       label {
         margin: 0 1rem 0 0;
+      }
+      .sexe {
+        @include input-focus-color;
+        @include very-small-mobile-only {
+          margin: 0 0 1rem 2.3rem;
+        }
+        @include small-mobile-only {
+          margin: 0 0 1rem 0;
+        }
+
+        &:focus {
+          @include outline-focus-color;
+        }
       }
     }
     .age-container {
       @include flex-row;
       label {
         margin: 0 1rem 0 0;
+      }
+      .age {
+        @include very-small-mobile-only {
+          margin: 0 0 1rem 0.55rem;
+        }
+        @include small-mobile-only {
+          margin: 0 0 1rem 0;
+        }
       }
     }
   }

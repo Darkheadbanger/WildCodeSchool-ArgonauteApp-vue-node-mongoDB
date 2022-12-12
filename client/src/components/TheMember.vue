@@ -17,7 +17,7 @@ let sexe =
     </div>
     <div class="separator-line">
       <span
-        >Age : <span>{{ age }}</span></span
+        >Age : <span>{{ age }} ans</span></span
       >
     </div>
     <div class="separator-line">
