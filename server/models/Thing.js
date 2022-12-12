@@ -1,17 +1,1 @@
-const { Schema, model } = require("mongoose");
-
-// Indiquant le type ainsi leur caractères (obligatoire ou non, dand notre cas obligatoire)
-const memberSchema = new Schema({
-  membre: { type: String, required: true, index: { unique: false } },
-  sexe: { type: String, required: true, index: { unique: false } },
-  age: {
-    type: Number,
-    min: 18,
-    max: 100,
-    required: true,
-    index: { unique: false },
-  },
-  date: { type: Date, required: true, index: { unique: false } },
-});
-
-module.exports = model("Thing", memberSchema);
+const{Schema:e,model:i}=require("mongoose"),memberSchema=new e({membre:{type:String,required:!0,index:{unique:!1}},sexe:{type:String,required:!0,index:{unique:!1}},age:{type:Number,min:18,max:100,required:!0,index:{unique:!1}},date:{type:Date,required:!0,index:{unique:!1}}});module.exports=i("Thing",memberSchema);
