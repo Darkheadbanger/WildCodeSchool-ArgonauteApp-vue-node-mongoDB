@@ -62,7 +62,7 @@ const addMember = (memberValues) => {
     });
 };
 
-watch(
+watch( 
   crewArray,
   (newVal) => {
     localStorage.setItem("crewArray", JSON.stringify(newVal));
