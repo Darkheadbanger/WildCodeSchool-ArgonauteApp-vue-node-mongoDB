@@ -14,6 +14,7 @@ let props = defineProps({
     <p>{{ props.footer }}</p>
   </footer>
 </template>
+
 <style lang="scss" scoped>
 .container-footer {
   margin-top: 2rem;

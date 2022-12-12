@@ -1,16 +1,1 @@
-export default class Argonaute {
-  membre = "";
-  sexe = "";
-  age = 0;
-  createdAt = 0;
-  constructor(data = {}) {
-    this.loadData(data);
-  }
-  loadData(Objet = {}) {
-    for (let cleObjet in Objet) {
-      if (this.hasOwnProperty(cleObjet)) {
-        this[cleObjet] = Objet[cleObjet];
-      }
-    }
-  }
-}
+export default class t{membre="";sexe="";age=0;createdAt=0;constructor(t={}){this.loadData(t)}loadData(t={}){for(let a in t)this.hasOwnProperty(a)&&(this[a]=t[a])}};
