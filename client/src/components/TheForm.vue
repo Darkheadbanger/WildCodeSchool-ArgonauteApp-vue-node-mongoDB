@@ -5,6 +5,9 @@ let memberName = ref("");
 let memberSexe = ref("homme");
 let memberAge = ref("");
 
+// Pour le nom international
+const pattern = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$";
+
 const emits = defineEmits(["addMember"]);
 
 watch(memberName, (watchedValue) => {
@@ -18,7 +21,13 @@ onMounted(() => {
   emptyingStringOnRefresh;
 });
 
-const isDisabled = computed(() => !memberName.value || memberAge.value < 18 || memberAge.value > 100);
+const isDisabled = computed(
+  () =>
+    !memberName.value ||
+    memberAge.value < 18 ||
+    memberAge.value > 100 ||
+    !memberName.value.match(pattern)
+);
 
 const addMember = () => {
   let memberValues = {
@@ -174,10 +183,10 @@ fieldset {
     }
     .sexe-container {
       @include flex-row;
-      @include portrait-mobile-only{
+      @include portrait-mobile-only {
         padding: 0 3.4rem 0 0;
       }
-      @include laptop-only{
+      @include laptop-only {
         padding: 0 3.4rem 0 0;
       }
       label {
