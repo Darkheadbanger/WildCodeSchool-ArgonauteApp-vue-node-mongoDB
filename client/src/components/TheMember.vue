@@ -38,6 +38,10 @@ let sexe =
     }
   }
   &__element {
+    transition: 1s;
+    &:hover {
+      @include member-zoomed;
+    }
     @include member-container;
     text-align: center;
     list-style-type: none;
