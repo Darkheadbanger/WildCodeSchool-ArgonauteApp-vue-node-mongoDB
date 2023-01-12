@@ -1,1 +1,26 @@
-import{createRouter as e,createWebHistory as t}from"vue-router";import o from"../views/ArgonautesView.vue";import r from"../views/About.vue";let routes=[{name:"Home",path:"/",component:o,meta:{title:"Les Argonautes"}},{name:"About",path:"/about",component:r},],router=e({history:t(import.meta.env.BASE_URL),routes});router.beforeEach(e=>{document.title=`${e.meta.title}`});export default router;
+import { createRouter, createWebHistory } from "vue-router";
+import ArgonautesView from "../views/ArgonautesView.vue";
+import About from "../views/About.vue";
+let routes = [
+    {
+      name: "Home",
+      path: "/",
+      component: ArgonautesView,
+      meta: {
+        title: "Les Argonautes",
+      },
+    },
+    {
+      name: "About",
+      path: "/about",
+      component: About,
+    },
+  ],
+  router = createRouter({
+    history: createWebHistory(import.meta.env.BASE_URL),
+    routes,
+  });
+router.beforeEach((to) => {
+  document.title = `${to.meta.title}`;
+});
+export default router;

@@ -1,1 +1,19 @@
-import{fileURLToPath as s,URL as o}from"node:url";import{defineConfig as r}from"vite";import i from"@vitejs/plugin-vue";export default r({css:{preprocessorOptions:{scss:{additionalData:'@import "@/scss/global.scss";'}}},plugins:[i()],resolve:{alias:{"@":s(new o("./src",import.meta.url))}}});
+import { fileURLToPath, URL } from "node:url";
+import { defineConfig } from "vite";
+import i from "@vitejs/plugin-vue";
+
+export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "@/scss/global.scss";',
+      },
+    },
+  },
+  plugins: [i()],
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
+  },
+});

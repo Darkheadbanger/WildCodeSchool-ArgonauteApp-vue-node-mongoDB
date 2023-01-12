@@ -1,1 +1,27 @@
-const{json:t}=require("body-parser"),Thing=require("../models/Thing");exports.createThings=async(t,e)=>{let n=new Thing({...t.body});try{let s=await n.save();if(!s)throw Error("Une erreur pendant la cr\xe9ation d'un nouveau membre");e.status(200).json(s)}catch(r){return console.error(`Post ${r.message}`),e.status(500).json({error:r})}},exports.getAllThings=async(t,e)=>{try{let n=await Thing.find();if(!n)throw Error("Aucun membre n'a \xe9t\xe9 trouv\xe9");e.status(200).json(n)}catch(s){return console.error(`Get, ${s.message}`),e.status(500).json({error:s})}};
+// La logique métier de l'API, simplification de la lecture et la gestion du ocde pour le rendre plus modulaire
+const 
+    Thing = require("../models/Thing");
+(exports.createThings = async (req, res) => {
+    let newMember = new Thing({
+        ...req.body
+    });
+    try {
+        let member = await newMember.save();// Sauvegarde dans la base de donées
+        if (!member) throw Error("Une erreur pendant la cr\xe9ation d'un nouveau membre");
+        res.status(200).json(member);
+    } catch (error) {
+        return console.error(`Post ${error.message}`),
+        res.status(500).json({error: error});// 500 erreurs du serveur
+    }
+}),
+(exports.getAllThings = async (req, res) => {
+    try {
+        let findAllMember = await Thing.find();
+        if (!findAllMember) throw Error("Aucun membre n'a \xe9t\xe9 trouv\xe9");
+        res.status(200).json(findAllMember);
+    } catch (error) {
+        return console.error(`Get, ${error.message}`), res.status(500).json({
+            error: error
+        });
+    }
+});

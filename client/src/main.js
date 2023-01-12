@@ -1,1 +1,5 @@
-import{createApp as p}from"vue";import o from"./App.vue";import r from"./router";let app=p(o);app.use(r),app.mount("#app");
+import { createApp } from "vue";
+import application from "./App.vue";
+import route from "./router";
+let app = createApp(application);
+app.use(route), app.mount("#app");

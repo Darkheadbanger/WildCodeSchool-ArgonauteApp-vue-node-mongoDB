@@ -1,1 +1,26 @@
-const http=require("http"),app=require("./app"),normalizePort=e=>{let r=parseInt(e,10);return isNaN(r)?e:r>=0&&r},port=normalizePort(process.env.PORT||process.env.ORIGINALPORT);app.set("port",port);const errorHandler=e=>{if("listen"!==e.syscall)throw e;let r=server.address(),t="string"==typeof r?"pipe "+r:"port: "+port;switch(e.code){case"EACCES":console.error(`${t} requires elevated privileges.`),process.exit(1);break;case"EADDRINUSE":console.error(`${t} is already in use.`),process.exit(1);break;default:throw e}},server=http.createServer(app);server.on("error",errorHandler),server.on("listening",()=>{let e=server.address(),r="string"==typeof e?"pipe "+e:"port "+port;console.log(`Listening on ${r}`)}),server.listen(port);
+const http = require("http"),
+  app = require("./app");
+const errorHandler = require("./middlewares/error");
+
+app.use(errorHandler);
+
+const normalizePort = (val) => {
+    let port = parseInt(val, 10);
+    return isNaN(port) ? val : port >= 0 && port;
+  },
+  port = normalizePort(process.env.PORT || process.env.ORIGINALPORT);
+
+app.set("port", port);
+
+const server = http.createServer(app);
+
+server.on("error", (e) => {
+  console.error(e);
+  process.exit(1);
+});
+server.on("listening", () => {
+  let e = server.address(),
+    r = "string" == typeof e ? "pipe " + e : "port " + port;
+  console.log(`Listening on ${r}`);
+}),
+  server.listen(port);
