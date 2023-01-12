@@ -1,3 +1,17 @@
+const fs = require("fs-extra");
+const path = require("path");
+
+const filePath = path.join(
+  "C:",
+  "Users",
+  "David",
+  "Downloads",
+  "Programming",
+  "wildcodeSchool_project",
+  "server",
+);
+
+
 const errorHandler = (err, req, res, next) => {
   console.error(err);
   let errStatus, errMsg;
@@ -23,11 +37,27 @@ const errorHandler = (err, req, res, next) => {
       errMsg = err.message || "Erreur interne du serveur";
       break;
   }
-  return res.status(errStatus).json({
+  res.status(errStatus).json({
     success: false,
     status: errStatus,
     message: err ? errMsg : "Le serveur ne réponds pas",
-    stack: process.env.NODE_ENV === "development" ? err.stacj : {},
+    stack: process.env.NODE_ENV === "development" ? err.stack : {},
   });
+  fs.ensureDir(path.dirname(filePath))
+    .then(() => {
+      fs.outputFile("Error.txt", err.stack)
+        .then(() => {
+          console.log("Les traces de stack est écrt au fichier Error.txt");
+        })
+        .catch((err) => {
+          console.error(
+            "Impossible d'écrire, il y a une erreur dans le fichier error.txt",
+            err
+          );
+        });
+    })
+    .catch((error) => {
+      console.error("Impossible de trouver l'emplacement exact", error);
+    });
 };
 module.exports = errorHandler;
