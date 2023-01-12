@@ -1,5 +1,6 @@
 const fs = require("fs-extra");
 const path = require("path");
+const timeStamp = new Date(Date.now().toLocaleString());
 
 const filePath = path.join(
   "C:",
@@ -8,9 +9,8 @@ const filePath = path.join(
   "Downloads",
   "Programming",
   "wildcodeSchool_project",
-  "server",
+  "server"
 );
-
 
 const errorHandler = (err, req, res, next) => {
   console.error(err);
@@ -43,9 +43,18 @@ const errorHandler = (err, req, res, next) => {
     message: err ? errMsg : "Le serveur ne réponds pas",
     stack: process.env.NODE_ENV === "development" ? err.stack : {},
   });
+  
+  const errorText = `[${timeStamp}] ${err.stack}\n`;
+
   fs.ensureDir(path.dirname(filePath))
     .then(() => {
-      fs.outputFile("Error.txt", err.stack)
+      fs.appendFile("Error.txt", errorText, (error) => {
+        if (error) {
+          console.log("Impossible d'écrire l'erreur avec timeStamp");
+        } else {
+          console.log("L'erreur avec timestamp st dans le fichier Error.txt");
+        }
+      })
         .then(() => {
           console.log("Les traces de stack est écrt au fichier Error.txt");
         })
