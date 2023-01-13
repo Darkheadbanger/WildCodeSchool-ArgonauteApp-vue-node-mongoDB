@@ -1,7 +1,15 @@
 const fs = require("fs-extra");
 const path = require("path");
-const timeStamp = new Date(Date.now().toLocaleString());
-
+const timeStamp = new Date().toLocaleString("fr-FR", {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric",
+});
+console.log("timeStamp", timeStamp);
 const filePath = path.join(
   "C:",
   "Users",
@@ -43,30 +51,34 @@ const errorHandler = (err, req, res, next) => {
     message: err ? errMsg : "Le serveur ne réponds pas",
     stack: process.env.NODE_ENV === "development" ? err.stack : {},
   });
-  
-  const errorText = `[${timeStamp}] ${err.stack}\n`;
 
-  fs.ensureDir(path.dirname(filePath))
-    .then(() => {
-      fs.appendFile("Error.txt", errorText, (error) => {
-        if (error) {
-          console.log("Impossible d'écrire l'erreur avec timeStamp");
-        } else {
-          console.log("L'erreur avec timestamp st dans le fichier Error.txt");
-        }
-      })
-        .then(() => {
-          console.log("Les traces de stack est écrt au fichier Error.txt");
+  const errorText = `[${timeStamp}] ${err.stack}\n`;
+  if (err.statusCode === 401 && err.statusCode === 403) {
+    return false; // On eclue d'écrire dans le journal les érreurs critiques et sensibles
+  } else {
+    fs.ensureDir(path.dirname(filePath))
+      .then(() => {
+        fs.appendFile("Error.txt", errorText, (error) => {
+          if (!error) {
+            console.log("L'erreur avec timestamp st dans le fichier Error.txt");
+          } else {
+            console.log("Impossible d'écrire l'erreur avec timeStamp");
+          }
         })
-        .catch((err) => {
-          console.error(
-            "Impossible d'écrire, il y a une erreur dans le fichier error.txt",
-            err
-          );
-        });
-    })
-    .catch((error) => {
-      console.error("Impossible de trouver l'emplacement exact", error);
-    });
+          .then(() => {
+            console.log("Les traces de stack est écrt au fichier Error.txt");
+          })
+          .catch((err) => {
+            console.error(
+              "Impossible d'écrire, il y a une erreur dans le fichier error.txt",
+              err
+            );
+          });
+      })
+      .catch((error) => {
+        console.error("Impossible de trouver l'emplacement exact", error);
+      });
+  }
 };
+
 module.exports = errorHandler;
