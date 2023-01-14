@@ -1,11 +1,11 @@
 "use strict";
-const http = require("http"), app = require("./app"), errorHandler = require("./middlewares/error");
+const http = require("http"), serverApp = require("./app"), errorHandler = require("./middlewares/error");
 const normalizePort = (val) => {
     let port = parseInt(val.toString(), 10);
     return isNaN(port) ? val : port >= 0 && port;
 }, port = normalizePort(process.env.PORT || process.env.ORIGINALPORT);
-app.set("port", port);
-const server = http.createServer(app);
+serverApp.set("port", port);
+const server = http.createServer(serverApp);
 server.on("error", (e) => {
     console.error(e);
     process.exit(1);
@@ -16,5 +16,5 @@ server.on("listening", () => {
     // prends la valeur "pipe suivi de l'adresse", si non elle prends la valeur "port suivi le numéro de port"
     console.log(`Listening on ${addressType}`);
 }),
-    app.use(errorHandler);
+    serverApp.use(errorHandler);
 server.listen(port);
