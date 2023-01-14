@@ -1,5 +1,5 @@
 const http = require("http"),
-  app = require("./app"),
+  serverApp = require("./app"),
   errorHandler = require("./middlewares/error");
 
 const normalizePort = (
@@ -12,9 +12,9 @@ const normalizePort = (
     (process.env.PORT as string) || (process.env.ORIGINALPORT as string)
   );
 
-app.set("port", port);
+serverApp.set("port", port);
 
-const server = http.createServer(app);
+const server = http.createServer(serverApp);
 
 server.on("error", (e: NodeJS.ErrnoException) => {
   console.error(e);
@@ -27,6 +27,6 @@ server.on("listening", () => {
   // prends la valeur "pipe suivi de l'adresse", si non elle prends la valeur "port suivi le numéro de port"
   console.log(`Listening on ${addressType}`);
 }),
-  app.use(errorHandler);
+  serverApp.use(errorHandler);
 
-server.listen(port); 
+server.listen(port);  
